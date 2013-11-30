@@ -1,1 +1,1 @@
-__all__=["cfgreader"]
+__all__=["ConfigReader"]
