@@ -22,11 +22,27 @@ def expertRegister(expertCode,loginId,companyName,serverName):
         response = urllib2.urlopen(req)
         content = response.read()
         return  str(json.loads(content))
-    except:
+    except Exception as e:
+        #print(Exception,e)
         return u"{'errcode':-1,'errmsg':'fail to connect server'}"
     
     
-
+def expertUnregister(expertInstanceId,token):
+    try:
+        data = {
+            "ExpertInstanceId":expertInstanceId,
+            "Token":token
+        }
+        postData = urllib.urlencode(data)
+        url = "http://qisite.jios.org:11000/fxserver/experts/service/ExpertUnregister"
+        #url = "http://192.168.0.120:8080/experts/service/ExpertUnregister"
+        req = urllib2.Request(url, postData)
+        response = urllib2.urlopen(req)
+        content = response.read()
+        return  str(json.loads(content))
+    except Exception as e :
+        #print(Exception,e)
+        return u"{'errcode':-1,'errmsg':'fail to connect server'}"
 
 
         
